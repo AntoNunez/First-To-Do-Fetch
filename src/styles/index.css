@@ -1,4 +1,23 @@
-
+.container{
+    margin-top: 20px;
+    padding: 30px;
+    box-shadow: 2px 2px 4px #bdb8b8,0 1px 1px rgba(0,0,0,0.15),0 10px 0 -5px #eee,0 10px 1px -4px rgba(0,0,0,0.15),0 20px 0 -10px #eee,0 20px 1px -9px rgba(0,0,0,0.15);
+}
+#app {
+    width: 50%;
+    margin: 0 auto;
+}
+body {
+    font-size: 20px;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; 
+    
+}
+  .list-group-item{
+      background-color: rgba(232, 222, 201, 0.744);
+  }
+  .card-footer {
+    background-color:rgba(232, 222, 201, 0.744);
+}
 /* 
 
     You can write your own styles here...
