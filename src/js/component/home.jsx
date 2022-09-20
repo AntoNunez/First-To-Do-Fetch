@@ -13,21 +13,21 @@ function Home() {
 		"https://assets.breatheco.de/apis/fake/todos/user/AntoNunez"
 	);
 	//POST//
-	const getUser = (url) => {
+	const getUser = url => {
 		console.log(url);
 		fetch(url, {
 			method: "POST",
 			body: JSON.stringify([]),
-			headers: { "Content-Type": "application/json" },
+			headers: { "Content-Type": "application/json" }
 		})
-			.then((response) => response.json())
-			.then((data) => {
+			.then(response => response.json())
+			.then(data => {
 				console.log(data);
 				if (data.msg) {
 				}
 				getTodos(url);
 			})
-			.catch((error) => console.log(error));
+			.catch(error => console.log(error));
 	};
 
 	//GET//
@@ -35,10 +35,10 @@ function Home() {
 		getTodos(urlApi);
 	}, []);
 
-	const getTodos = (url) => {
+	const getTodos = url => {
 		fetch(url)
-			.then((response) => response.json())
-			.then((data) => {
+			.then(response => response.json())
+			.then(data => {
 				console.log(data);
 				if (data.msg) {
 					console.log(data.msg);
@@ -48,38 +48,19 @@ function Home() {
 				}
 			})
 
-			.catch((error) => console.log(error));
-	};
-
-	//PUT//
-	const updateTodos = (url, todos) => {
-		fetch(url, {
-			method: "PUT",
-			body: JSON.stringify(todos),
-			headers: {
-				"Content-Type": "application/json",
-			},
-		})
-			.then((response) => response.json())
-			.then((data) => console.log(data))
-			.catch((error) => console.log(error));
+			.catch(error => console.log(error));
 	};
 
 	//ENTER//
-	const AddTask = (e) => {
+	const AddTask = e => {
 		if (e.key == "Enter" && nameRef.value !== "") {
 			setTask(task.concat(nameRef.value));
-			nameRef.value = "";
-			/////////////
-			let newTodos = [...todos, { label: nameRef.value, done: false }];
-			setTodos(newTodos);
-			updateTodos(urlApi, newTodos);
 			nameRef.value = "";
 		}
 	};
 
 	// BUTTON//
-	const AddTaskButton = (e) => {
+	const AddTaskButton = e => {
 		if (nameRef.value !== "") setTask(task.concat(nameRef.value));
 		nameRef.value = "";
 	};
@@ -90,23 +71,19 @@ function Home() {
 		fetch(urlApi, {
 			method: "DELETE",
 			headers: {
-				"content-type": "application/json",
-			},
+				"content-type": "application/json"
+			}
 		})
-			.then((response) => response.json())
-			.then((data) => console.log(data))
-			.catch((error) => console.log(error));
+			.then(response => response.json())
+			.then(data => console.log(data))
+			.catch(error => console.log(error));
 	};
 
 	//DELETE TASK//
 
-	const DeleteTask = (index) => {
+	const DeleteTask = index => {
 		task.splice(index, 1);
 		setTask([...task]);
-		/////////
-		todos.splice(index, 1);
-		setTodos([...todos]);
-		updateTodos(urlApi, todos);
 	};
 
 	////CLEAN TODOS/////
@@ -125,20 +102,20 @@ function Home() {
 						<div className="input-group mb-3 list-group list-group-flush">
 							<input
 								onKeyUp={AddTask}
-								ref={(r) => (nameRef = r)}
+								ref={r => (nameRef = r)}
 								type="text"
 								id="input"
 								className="list-group-item"
 								placeholder="Enter your new task "
 							/>
 							<div className="d-grid gap-2 col-6 mx-auto mt-2 input-group-append list-group list-group-flush">
-								{/*	<button
+								<button
 									className="btn btn-outline-success"
 									onClick={() => getUser(urlApi)}
 									type="button"
 									id="buttonUser">
 									Create User
-								</button>*/}
+								</button>
 								<button
 									className="btn btn-outline-primary"
 									onClick={AddTaskButton}
